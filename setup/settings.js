@@ -170,29 +170,8 @@ exports.customEffects = customEffects;
 
 var animations = {};
 
-animations['piece01-destroy'] = {
+animations['piece-destroy'] = {
     fps: 30,
-    scale: 1
-};
-
-animations['piece02-destroy'] = {
-    fps: 30,
-    scale: 1
-};
-
-animations['piece03-destroy'] = {
-    fps: 30,
-    scale: 1
-};
-
-animations['piece04-destroy'] = {
-    fps: 30,
-    scale: 1
-};
-
-animations['piece05-destroy'] = {
-    fps: 30,
-    loop: false,
     scale: 1
 };
 
