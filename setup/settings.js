@@ -91,7 +91,7 @@ exports.goalPanelAngleLandscape = 0;
 
 exports.booster01 = {
     name: 'rocket', // boster name
-    destroys: 'vertical', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
+    destroys: 'horizontalAndVertical', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
     delay: 300, // the delay before tiles fall
     color: 'cyan',
     piecesToCreate: '4-horizontal' // choose from: 4-horizontal, 4-vertical, mixture, 5-in-a-line
@@ -99,7 +99,7 @@ exports.booster01 = {
 
 exports.booster02 = {
     name: 'bomb', // boster name
-    destroys: 'horizontal', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
+    destroys: 'horizontalAndVertical', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
     delay: 300, // the delay before tiles fall
     color: 'yellow',
     piecesToCreate: '4-horizontal' // choose from: 4-horizontal, 4-vertical, mixture, 5-in-a-line

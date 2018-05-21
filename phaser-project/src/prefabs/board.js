@@ -229,7 +229,7 @@ class Board {
             this.toggleTapBoosterIndicators();
         }
 
-        this.totalJellyToGenerate = this.numberOfTiles - this.bottomLayerGrp;
+        this.totalJellyToGenerate = this.numberOfTiles - this.bottomLayerGrp.length;
     }
 
     createOverlay() {
@@ -1114,6 +1114,7 @@ class Board {
 
         var progressPercentage = matches.length / this.totalJellyToGenerate ;
         
+        
         this.game.onTweenBar.dispatch(progressPercentage);
 
 
@@ -1134,8 +1135,6 @@ class Board {
             this.game.time.events.add(delay + extraDelay + 50, function() {
 
                 holes = Util.uniq(holes);
-
-                console.log(holes);
 
                 var fallResults = this.fall(holes);
 

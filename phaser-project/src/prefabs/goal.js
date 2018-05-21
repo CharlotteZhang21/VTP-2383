@@ -141,8 +141,6 @@ class Goal extends Phaser.Group {
     onTweenBar(percentage) {
 
         var maxDegree = this.maskAngle.min + this.difference * percentage;
-
-        console.log(maxDegree);
         
         var _this = this;
         
