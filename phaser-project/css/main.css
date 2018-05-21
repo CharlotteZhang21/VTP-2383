@@ -258,9 +258,9 @@ a {
   pointer-events: none; }
 
 #tooltip {
-  width: 100%;
-  height: 20%;
-  top: 32%; }
+  width: 98%;
+  height: 18%;
+  top: 15%; }
 
 #tooltip-text {
   width: 50%;
@@ -273,13 +273,13 @@ a {
   height: 100vw; }
 
 #board-inner {
-  width: 87%;
-  height: 87%;
-  margin: 6.5%; }
+  width: 90%;
+  height: 90%;
+  margin: 5%; }
 
 #board-mask {
-  width: 89vw;
-  height: 89vw;
+  width: 90%;
+  height: 90%;
   top: 49.8%; }
 
 #logo {
@@ -308,9 +308,8 @@ a {
   top: 5%; }
 
 #goal-item-1 {
-  width: 13%;
-  height: 0;
-  padding-bottom: 13%;
+  width: 30%;
+  height: 80%;
   top: 50%;
   left: 50%; }
 
@@ -391,8 +390,8 @@ a {
     left: 27.5%; }
   #logo {
     width: 40%;
-    padding-bottom: 12.5%;
-    top: 35%;
+    padding-bottom: 30%;
+    top: 10%;
     left: 77.5%; }
   #cta-start {
     width: 30%;
@@ -405,7 +404,7 @@ a {
   #goal-panel {
     width: 40%;
     padding-bottom: 20%;
-    top: 35%;
+    top: 50%;
     left: 77.5%; }
   #ostin {
     width: 25%;
@@ -414,4 +413,7 @@ a {
   .cascade {
     width: 25%;
     padding-bottom: 100%;
-    top: 50%; } }
+    top: 50%; }
+  #goal-item-1 {
+    width: 20%;
+    height: 63%; } }

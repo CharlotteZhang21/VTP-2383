@@ -246,6 +246,39 @@ export function textToDom(elId, txt) {
     }
 }
 
+export function maskToDom(elId, mask) {
+    console.log(mask);
+
+    // var el = document.getElementById(elId);
+
+    // var rect = el.getBoundingClientRect();
+
+    // var sanityCheck = 1000;
+    // var sanityCounter = 0;
+
+    // var fontSize = 40;
+
+
+    // txt.x = rect.left * window.devicePixelRatio + (mask.width * 0.5);
+    // txt.y = rect.top * window.devicePixelRatio + (mask.height * 0.5);
+
+    // while (sanityCounter < sanityCheck &&
+    //     (txt.width > rect.width * window.devicePixelRatio ||
+    //         txt.height > rect.height * window.devicePixelRatio) &&
+    //     fontSize > 0) {
+
+    //     txt.fontSize = fontSize + 'vw';
+
+    //     fontSize--;
+    //     txt.updateText();
+
+    //     txt.x = rect.left * window.devicePixelRatio + (txt.width * 0.5);
+    //     txt.y = rect.top * window.devicePixelRatio + (txt.height * 0.5);
+
+    //     sanityCounter++;
+    // }
+}
+
 export function toPerc(str) {
 
     return Number(str.replace('%', '')) * 0.01;

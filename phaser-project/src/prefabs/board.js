@@ -33,7 +33,7 @@ class Board {
         this.initBoosters();
         this.createGrid();
 
-        this.swipeDuration = 150;
+        this.swipeDuration = 450;
         this.comboDuration = 150;
         this.staggerDelay = 80;
         this.flySpeed = 200;
@@ -125,7 +125,9 @@ class Board {
 
                 if (Settings.interactionType === 'swipe' &&
                     matchComps.h === this.boosters[i].toGenerate[j].h &&
-                    matchComps.v === this.boosters[i].toGenerate[j].v) {
+                    matchComps.v === this.boosters[i].toGenerate[j].v &&
+                    this.boosters[i].color !== undefined && 
+                    this.boosters[i].color === origTile.settings.color) {
 
                     return this.boosters[i];
                 }
@@ -226,6 +228,8 @@ class Board {
 
             this.toggleTapBoosterIndicators();
         }
+
+        this.totalJellyToGenerate = this.numberOfTiles - this.bottomLayerGrp;
     }
 
     createOverlay() {
@@ -247,7 +251,6 @@ class Board {
 
         for (var key in tileset.tiles) {
             if (tileset.tiles.hasOwnProperty(key)) {
-
                 this.tileIds[parseInt(key) + 1] = tileset.tiles[key].image
                     .replace('../../pieces/', '')
                     .replace('.png', '');
@@ -305,7 +308,8 @@ class Board {
         sprite.settings = {
             key: key,
             x: x,
-            y: y
+            y: y,
+            color: key.replace("_candy", '')
         };
 
         if (key.indexOf('booster') !== -1 && Settings[key]) {
@@ -475,9 +479,21 @@ class Board {
 
         var t1 = interaction.highlightTiles[0];
         var t2 = interaction.highlightTiles[1];
-
-        var tile1 = this.getTileAt(t1.x, t1.y, this.tiles);
+        
         var tile2 = this.getTileAt(t2.x, t2.y, this.tiles);
+        var tile1 = this.getTileAt(t1.x, t1.y, this.tiles);
+        
+        //tile 1 ani
+        var tileScale = tile1.scale.x;
+
+        this.game.add.tween(tile1.scale).to({
+                x: [tileScale*2, tileScale], 
+                y: [tileScale*2, tileScale]
+            },
+            this.swipeDuration/2,
+            Phaser.Easing.Linear.None,
+            true,
+            0);
 
         this.moveToLinear(tile1, t2.x, t2.y, this.swipeDuration);
         this.moveToLinear(tile2, t1.x, t1.y, this.swipeDuration);
@@ -525,13 +541,23 @@ class Board {
 
     generateJelly(tile) {
 
+        var t = this.getTileAt(tile.settings.x, tile.settings.y, this.bottomTiles);// check if the jelly has already exisited;
 
-        this.bottomLayerGrp.add(this.createTile(
+        if(t == null){ // if there is no jelly then generate
+            
+            var newJelly = this.createTile(
                 'under-jelly',
                 tile.settings.x,
                 tile.settings.y,
                 Settings.belowPiecePadding,
-                this.bottomTiles));
+                this.bottomTiles)
+       
+            this.bottomLayerGrp.add(newJelly);
+
+            this.playAnimation(newJelly, 'jelly-destroy');
+        }
+        
+
 
     }
 
@@ -753,11 +779,11 @@ class Board {
                 //     this.playAnimation(tile, tile.settings.key + '-destroy');
                 // }
 
-                var anim = tile.settings.destroyAnim || tile.settings.key + '-destroy';
+                var anim = tile.settings.destroyAnim || tile.settings.color + '-destroy';
 
                 var isAnim = this.game.cache.checkImageKey(anim);
 
-                if (!isAnim && tile.settings.key.indexOf('piece') !== -1) {
+                if (!isAnim && tile.settings.key.indexOf('candy') !== -1) {
                     anim = 'piece-destroy';
                 }
 
@@ -1025,6 +1051,7 @@ class Board {
 
         var holes = [];
 
+
         for (var i = 0; i < tiles.length; i++) {
 
             if (tiles[i] === null || tiles[i].settings.dontMatch === true) {
@@ -1083,6 +1110,12 @@ class Board {
             }
         }
 
+        //update the progress bar
+
+        var progressPercentage = matches.length / this.totalJellyToGenerate ;
+        
+        this.game.onTweenBar.dispatch(progressPercentage);
+
 
         if(Settings.interactionType === 'tap') {
             extraDelay += 500;
@@ -1099,6 +1132,10 @@ class Board {
         } else {
 
             this.game.time.events.add(delay + extraDelay + 50, function() {
+
+                holes = Util.uniq(holes);
+
+                console.log(holes);
 
                 var fallResults = this.fall(holes);
 
@@ -1122,6 +1159,9 @@ class Board {
 
             }, this);
         }
+
+        
+        
     }
 
     addBlockerMatches(matches) {
@@ -1184,6 +1224,7 @@ class Board {
 
         var x = origTile.settings.x;
         var y = origTile.settings.y;
+        var color = origTile.settings.key.replace('_candy', '');
 
         var holes = this.getHolesFromMatches(origTile, matches);
 
@@ -1192,6 +1233,8 @@ class Board {
             this.moveToLinear(m, origTile.settings.x, origTile.settings.y, this.comboDuration);
 
             this.removeUnderTile(m);
+
+            this.generateJelly(m);
 
         }, this);
 
@@ -1531,6 +1574,7 @@ class Board {
             return;
         }
 
+
         this.game.onInteractionComplete.dispatch();
 
     }
@@ -1624,6 +1668,8 @@ class Board {
     }
 
     transformTile(t) {
+        console.log("transformTile");
+        console.log(t);
 
         this.game.time.events.add(t.delay || 0, function() {
 

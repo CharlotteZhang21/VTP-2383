@@ -1,2 +1,3 @@
-exports.tooltip1 = 'Spread the jelly!';
-exports.tooltip2 = 'Swipe right to \nexplode the rocket';
+exports.tooltip1 = 'Match the \ngreen candies!';
+exports.tooltip2 = 'Swipe down to \ncreate two stripes!';
+exports.tooltip3 = 'Explode them \nand spread the jelly!';

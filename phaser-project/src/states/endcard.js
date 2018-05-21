@@ -108,9 +108,9 @@
 
       createItems() {
 
-          if (Settings.goal1 || Settings.goal2 || Settings.goal3) {
+          // if (Settings.goal1 || Settings.goal2 || Settings.goal3) {
               this.goal = new Goal(this.game);
-          }
+          // }
 
           this.cta = this.createItem('sprites', 'cta', 'cta-start');
 
@@ -128,7 +128,7 @@
 
           this.logo = this.createItem('sprites', 'logo', 'logo');
 
-          this.logo.alpha = 0;
+          // this.logo.alpha = 0;
 
           this.customEffects = new CustomEffects(this.game);
       }
@@ -195,6 +195,8 @@
       }
 
       onGameComplete() {
+
+        console.log('finish');
 
           this.game.global.gameComplete = true;
 

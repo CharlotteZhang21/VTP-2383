@@ -3,7 +3,7 @@
     "arrow.png": {
       "frame": {
         "x": 768,
-        "y": 693,
+        "y": 1,
         "w": 251,
         "h": 217
       },
@@ -18,6 +18,46 @@
       "sourceSize": {
         "w": 251,
         "h": 217
+      }
+    },
+    "bar.png": {
+      "frame": {
+        "x": 591,
+        "y": 781,
+        "w": 288,
+        "h": 289
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 288,
+        "h": 289
+      },
+      "sourceSize": {
+        "w": 288,
+        "h": 289
+      }
+    },
+    "barbg.png": {
+      "frame": {
+        "x": 555,
+        "y": 1199,
+        "w": 288,
+        "h": 289
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 288,
+        "h": 289
+      },
+      "sourceSize": {
+        "w": 288,
+        "h": 289
       }
     },
     "board-mask.png": {
@@ -42,8 +82,8 @@
     },
     "board.png": {
       "frame": {
-        "x": 768,
-        "y": 1,
+        "x": 1,
+        "y": 890,
         "w": 552,
         "h": 563
       },
@@ -62,8 +102,8 @@
     },
     "cta.png": {
       "frame": {
-        "x": 353,
-        "y": 890,
+        "x": 768,
+        "y": 220,
         "w": 250,
         "h": 91
       },
@@ -78,6 +118,26 @@
       "sourceSize": {
         "w": 250,
         "h": 110
+      }
+    },
+    "energy-stripe.png": {
+      "frame": {
+        "x": 916,
+        "y": 313,
+        "w": 107,
+        "h": 480
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 0,
+        "w": 107,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 480
       }
     },
     "goal-panel.png": {
@@ -102,8 +162,8 @@
     },
     "hand.png": {
       "frame": {
-        "x": 1021,
-        "y": 693,
+        "x": 768,
+        "y": 552,
         "w": 139,
         "h": 227
       },
@@ -122,8 +182,8 @@
     },
     "highlight-box-2.png": {
       "frame": {
-        "x": 1162,
-        "y": 693,
+        "x": 881,
+        "y": 795,
         "w": 127,
         "h": 230
       },
@@ -142,37 +202,37 @@
     },
     "logo.png": {
       "frame": {
-        "x": 1,
-        "y": 890,
-        "w": 350,
-        "h": 95
+        "x": 768,
+        "y": 313,
+        "w": 146,
+        "h": 237
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 2,
-        "w": 350,
-        "h": 95
+        "x": 24,
+        "y": 3,
+        "w": 146,
+        "h": 237
       },
       "sourceSize": {
-        "w": 350,
-        "h": 100
+        "w": 200,
+        "h": 248
       }
     },
     "tooltip.png": {
       "frame": {
-        "x": 768,
-        "y": 566,
-        "w": 459,
+        "x": 555,
+        "y": 1072,
+        "w": 460,
         "h": 125
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 7,
-        "y": 84,
-        "w": 459,
+        "y": 60,
+        "w": 460,
         "h": 125
       },
       "sourceSize": {
@@ -187,8 +247,8 @@
     "image": "sprites.png",
     "format": "RGBA8888",
     "size": {
-      "w": 1321,
-      "h": 986
+      "w": 1024,
+      "h": 1489
     },
     "scale": "1"
   }

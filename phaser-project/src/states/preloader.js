@@ -29,7 +29,7 @@
 
          for (var key in Atlas.default) {
              if (Atlas.default.hasOwnProperty(key)) {
-
+                
                  this.game.load.atlasJSONHash(
                      key,
                      PiecSettings.assetsDir + key + '.png',

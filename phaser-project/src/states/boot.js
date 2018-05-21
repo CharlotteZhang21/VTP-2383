@@ -16,6 +16,7 @@ class Boot extends Phaser.State {
         game.onInteractionComplete = new Phaser.Signal();
         game.onFinalScene = new Phaser.Signal();
         game.onGetGoalItem = new Phaser.Signal();
+        game.onTweenBar = new Phaser.Signal();
 
         window.onresize = function() { location.reload(true); };
     }

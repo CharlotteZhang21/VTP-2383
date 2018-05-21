@@ -33,20 +33,32 @@ exports.handAnchorY = 0; // the y anchor point of the tutorial hand (usually a n
 
 exports.lang = 'en'; // the current language of the end card
 
+exports.tilesRow = 7;
+exports.tilesColumn = 7;
+
 // exports.settingsOveride = '4s_Timer';
 
 /********************* INTERACTIONS *********************/
 
 exports.interaction1 = {
-    highlightTiles: [{ x: 4, y: 3 }, { x: 3, y: 3 }], // tiles to highlight
+    highlightTiles: [{ x: 3, y: 3 }, { x: 4, y: 3 }], // tiles to highlight
+    highlightOtherTiles: [{ x: 4, y: 2}, {x: 4, y: 4}], // tiles to highlight
     arrow: { dir: 'left' }, // arrow direction
     tooltip: '{{tooltip1}}' // tooltip text
 };
 
 exports.interaction2 = {
-    highlightTiles: [{ x: 3, y: 3 }, { x: 4, y: 3 }], // tiles to highlight
-    arrow: { dir: 'left' }, // arrow direction
+    highlightTiles: [{ x: 3, y: 2 }, { x: 3, y: 3 }], // tiles to highlight
+    highlightOtherTiles: [{ x: 2, y: 3}, {x: 5, y: 3}], // tiles to highlight
+    arrow: { dir: 'down' }, // arrow direction
     tooltip: '{{tooltip2}}' // tooltip text
+};
+
+exports.interaction3 = {
+    highlightTiles: [{ x: 3, y: 2 }, { x: 3, y: 3 }], // tiles to highlight
+    highlightOtherTiles: [{ x: 3, y: 3}, {x: 3, y: 3}], // tiles to highlight
+    arrow: { dir: 'left' }, // arrow direction
+    tooltip: '{{tooltip3}}' // tooltip text
 };
 
 // tooltip text colors
@@ -56,21 +68,14 @@ exports.tooltipTextStrokeThickness = 0;
 
 /********************* GOALS (OPTIONAL) *********************/
 
-// exports.goal1 = {
-//     item: 'collectable01', // this should match name in setup/pieces directory
-//     amount: 2 // the amount to collect
-// };
-
-// exports.goal2 = {
-//     item: 'piece04', // this should match name in setup/pieces directory
-//     amount: 10 // the amount to collect
-// };
-
-// exports.goal3 = {
-//     item: 'piece03', // this should match name in setup/pieces directory
-//     amount: 10 // the amount to collect
-// };
-
+exports.progressbarBg = {
+    key: 'sprites',
+    name: 'barbg'
+};
+exports.progressbar = {
+    key: 'sprites',
+    name: 'bar'
+};
 // goal text colors
 exports.goalTextFill = '#ffffff';
 exports.goalTextStroke = '#000000';
@@ -86,16 +91,18 @@ exports.goalPanelAngleLandscape = 0;
 
 exports.booster01 = {
     name: 'rocket', // boster name
-    destroys: 'blast1', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
+    destroys: 'vertical', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
     delay: 300, // the delay before tiles fall
+    color: 'cyan',
     piecesToCreate: '4-horizontal' // choose from: 4-horizontal, 4-vertical, mixture, 5-in-a-line
 };
 
 exports.booster02 = {
     name: 'bomb', // boster name
-    destroys: 'blast2', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
+    destroys: 'horizontal', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
     delay: 300, // the delay before tiles fall
-    piecesToCreate: 'mixture' // choose from: 4-horizontal, 4-vertical, mixture, 5-in-a-line
+    color: 'yellow',
+    piecesToCreate: '4-horizontal' // choose from: 4-horizontal, 4-vertical, mixture, 5-in-a-line
 };
 
 /********************* ON USER WINS *********************/
@@ -170,10 +177,36 @@ exports.customEffects = customEffects;
 
 var animations = {};
 
-animations['piece-destroy'] = {
-    fps: 30,
-    scale: 1
+
+animations['jelly-destroy'] = {
+    fps: 35,
+    scale: .7
 };
+animations['blue-destroy'] = {
+    fps: 35,
+    scale: .2
+};
+animations['yellow-destroy'] = {
+    fps: 35,
+    scale: .2
+};
+animations['cyan-destroy'] = {
+    fps: 35,
+    scale: .2
+};
+animations['red-destroy'] = {
+    fps: 35,
+    scale: .2
+};
+animations['green-destroy'] = {
+    fps: 35,
+    scale: .2
+};
+animations['purple-destroy'] = {
+    fps: 35,
+    scale: .2
+};
+
 
 animations['booster01-destroy'] = {
     fps: 30,

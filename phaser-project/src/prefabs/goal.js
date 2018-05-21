@@ -14,6 +14,13 @@ class Goal extends Phaser.Group {
             name: 'goal-panel'
         }, 'goal-panel');
 
+        this.maskAngle = {min: -35, max: 90};
+        this.difference = this.maskAngle.max - this.maskAngle.min;
+
+        this.progressbarGrp = this.game.add.group();
+
+        this.add(this.progressbarGrp);
+
         if (Settings.goal1) {
             this.createItem(Settings.goal1, 'goal-item-1');
             this.createText(Settings.goal1, 'goal-text-1');
@@ -28,11 +35,37 @@ class Goal extends Phaser.Group {
             this.createItem(Settings.goal3, 'goal-item-3');
             this.createText(Settings.goal3, 'goal-text-3');
         }
+        
+        if(Settings.progressbar) {
+            this.createProgressBar(Settings.progressbarBg, 'goal-item-1');
+            this.createProgressBar(Settings.progressbar, 'goal-item-1');
+            this.initBar();
+        }
 
         this.game.add.existing(this);
 
         this.game.onGetGoalItem.add(this.onGetGoalItem, this);
+        this.game.onTweenBar.add(this.onTweenBar, this);
         this.game.onGameComplete.add(this.onGameComplete, this);
+    }
+
+    createProgressBar(bar, el){
+
+
+        var key = bar.key || 'pieces';
+        var name = bar.name || bar.item;
+
+        var sprite = new Phaser.Sprite(this.game, 0, 0, key, name + '.png');
+
+        sprite.anchor.set(0.5, 0.5);
+
+        sprite.angle = bar.angle || 0;
+
+        Util.spriteToDom(el, sprite);
+
+        this.progressbarGrp.add(sprite);
+
+        this.progressbarGrp[name] = sprite;
     }
 
     createItem(goal, el) {
@@ -85,6 +118,71 @@ class Goal extends Phaser.Group {
         Util.textToDom(el, txt);
 
         this.add(txt);
+    }
+
+    initBar() {     
+        this.arcMask = this.game.add.graphics(0, 0);
+
+        // //  Shapes drawn to the Graphics object must be filled.
+        this.arcMask.beginFill(0xffffff);
+
+        this.arcMask.arc(
+            this.progressbarGrp.barbg.x,
+            this.progressbarGrp.barbg.y,
+            this.progressbarGrp.barbg.width/2, 
+            this.game.math.degToRad(this.maskAngle.min),
+            this.game.math.degToRad(this.maskAngle.max), 
+            true);
+
+        //  And apply it to the Sprite
+        this.progressbarGrp.bar.mask = this.arcMask;
+    }
+
+    onTweenBar(percentage) {
+
+        var maxDegree = this.maskAngle.min + this.difference * percentage;
+
+        console.log(maxDegree);
+        
+        var _this = this;
+        
+        this.ProgressBarInterval = setInterval(function(){
+        
+            _this.changeBar(maxDegree);
+        
+        }, 10);
+    }
+
+    changeBar(maxDegree) {
+        
+        this.maskAngle.min++;
+        
+    
+        if(this.maskAngle.min > this.maskAngle.max) {
+                
+            clearInterval(this.ProgressBarInterval);
+            
+            this.progressbarGrp.bar.mask = null;
+            
+            this.arcMask.alpha = 0;
+                
+        
+        }else if(this.maskAngle.min > maxDegree) {
+
+            clearInterval(this.ProgressBarInterval);
+        
+        }else{
+            this.progressbarGrp.bar.mask.arc(
+                this.progressbarGrp.barbg.x,
+                this.progressbarGrp.barbg.y,
+                this.progressbarGrp.barbg.width/2, 
+                this.game.math.degToRad(this.maskAngle.min),
+                this.game.math.degToRad(this.maskAngle.max), 
+                true, 
+            150);
+        }
+
+
     }
 
     onGetGoalItem(info) {

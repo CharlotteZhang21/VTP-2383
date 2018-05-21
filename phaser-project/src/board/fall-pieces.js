@@ -3,7 +3,7 @@ export default
  "infinite":false,
  "layers":[
         {
-         "data":[2, 7, 3, 6, 6, 5, 6, 4, 3, 7, 3, 2, 2, 1, 7, 5, 4, 7, 2, 4, 2, 4, 3, 6, 2, 4, 4, 4, 4, 5, 4, 3, 4, 6, 1, 6, 1, 6, 7, 3, 3, 1, 1, 7, 4, 4, 4, 7, 3, 3, 6, 1, 4, 5, 1, 4, 1, 5, 5, 4, 6, 5, 5, 4, 4, 3, 1, 7, 5, 6, 6, 2, 5, 6, 7, 2, 3, 2, 5, 4, 5, 1, 1, 2, 3, 7, 1, 2, 2, 6, 7, 2, 6, 2, 6, 6, 2, 2, 3, 3, 7, 7, 3, 4, 7],
+         "data":[2, 7, 3, 6, 6, 5, 6, 4, 3, 7, 3, 2, 2, 1, 7, 5, 4, 7, 2, 4, 2, 4, 3, 6, 2, 4, 4, 4, 4, 5, 4, 3, 4, 6, 1, 6, 1, 6, 7, 3, 3, 1, 1, 7, 4, 4, 4, 7, 3, 3, 6, 1, 4, 5, 1, 4, 1, 5, 5, 4, 6, 5, 5, 4, 4, 3, 1, 7, 5, 6, 6, 2, 5, 6, 7, 2, 3, 2, 5, 4, 5, 1, 1, 2, 3, 7, 1, 2, 5, 6, 7, 2, 6, 2, 6, 5, 2, 2, 3, 3, 7, 1, 7, 4, 7],
          "height":15,
          "name":"fall-pieces",
          "opacity":1,
@@ -74,6 +74,73 @@ export default
              "6":
                 {
                  "image":"..\/..\/pieces\/yellow_candy.png",
+                 "imageheight":208,
+                 "imagewidth":208
+                }
+            },
+         "tilewidth":208
+        }, 
+        {
+         "columns":0,
+         "firstgid":8,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"pieces",
+         "spacing":0,
+         "tilecount":8,
+         "tileheight":208,
+         "tiles":
+            {
+             "0":
+                {
+                 "image":"..\/..\/pieces\/blue_candy.png",
+                 "imageheight":208,
+                 "imagewidth":208
+                },
+             "1":
+                {
+                 "image":"..\/..\/pieces\/cyan_candy.png",
+                 "imageheight":208,
+                 "imagewidth":208
+                },
+             "2":
+                {
+                 "image":"..\/..\/pieces\/green_candy.png",
+                 "imageheight":208,
+                 "imagewidth":208
+                },
+             "3":
+                {
+                 "image":"..\/..\/pieces\/orange_candy.png",
+                 "imageheight":208,
+                 "imagewidth":208
+                },
+             "4":
+                {
+                 "image":"..\/..\/pieces\/purple_candy.png",
+                 "imageheight":208,
+                 "imagewidth":208
+                },
+             "5":
+                {
+                 "image":"..\/..\/pieces\/red_candy.png",
+                 "imageheight":208,
+                 "imagewidth":208
+                },
+             "6":
+                {
+                 "image":"..\/..\/pieces\/yellow_candy.png",
+                 "imageheight":208,
+                 "imagewidth":208
+                },
+             "7":
+                {
+                 "image":"..\/..\/pieces\/under-jelly.png",
                  "imageheight":208,
                  "imagewidth":208
                 }
