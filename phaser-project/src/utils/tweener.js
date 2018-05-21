@@ -239,7 +239,7 @@ export function jiggle(sprite, xScalar, yScalar, duration) {
         0, -1).yoyo(true, 0);
 }
 
-export function jiggleAngle(sprite, angle, duration) {
+export function jiggleAngle(sprite, angle, duration, anchorX, anchorY) {
 
     angle = angle || 10;
 
@@ -249,10 +249,17 @@ export function jiggleAngle(sprite, angle, duration) {
 
     sprite.angle -= angle;
 
+    if(anchorX != null) 
+        sprite.anchor.x = anchorX;
+
+    if(anchorY != null)
+        sprite.anchor.y = anchorY;
+
+
     sprite.game.add.tween(sprite).to({
             angle: newAngle
         },
-        800,
+        duration,
         Phaser.Easing.Linear.None,
         true,
         0, -1).yoyo(true, 0);

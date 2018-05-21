@@ -48,9 +48,9 @@ exports.interaction1 = {
 };
 
 exports.interaction2 = {
-    highlightTiles: [{ x: 3, y: 2 }, { x: 3, y: 3 }], // tiles to highlight
+    highlightTiles: [{ x: 3, y: 3 }, { x: 3, y: 2 }], // tiles to highlight
     highlightOtherTiles: [{ x: 2, y: 3}, {x: 5, y: 3}], // tiles to highlight
-    arrow: { dir: 'down' }, // arrow direction
+    arrow: { dir: 'up' }, // arrow direction
     tooltip: '{{tooltip2}}' // tooltip text
 };
 
@@ -62,9 +62,9 @@ exports.interaction3 = {
 };
 
 // tooltip text colors
-exports.tooltipTextFill = '#884444';
-exports.tooltipTextStroke = '#000000';
-exports.tooltipTextStrokeThickness = 0;
+exports.tooltipTextFill = '#bb01cd';
+exports.tooltipTextStroke = '#fff';
+exports.tooltipTextStrokeThickness = 2;
 
 /********************* GOALS (OPTIONAL) *********************/
 
@@ -91,17 +91,19 @@ exports.goalPanelAngleLandscape = 0;
 
 exports.booster01 = {
     name: 'rocket', // boster name
-    destroys: 'horizontalAndVertical', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
+    destroys: 'vertical', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
     delay: 300, // the delay before tiles fall
     color: 'cyan',
+    explode: 'vertical',
     piecesToCreate: '4-horizontal' // choose from: 4-horizontal, 4-vertical, mixture, 5-in-a-line
 };
 
 exports.booster02 = {
     name: 'bomb', // boster name
-    destroys: 'horizontalAndVertical', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
+    destroys: 'horizontal', // choose from: horizontal, vertical, horizontalAndVertical, blast1, blast2
     delay: 300, // the delay before tiles fall
     color: 'yellow',
+    explode: 'horizontal',
     piecesToCreate: '4-horizontal' // choose from: 4-horizontal, 4-vertical, mixture, 5-in-a-line
 };
 
@@ -129,7 +131,7 @@ exports.logoAnimationDuration = 1000; // animation duration
 var customEffects = {};
 
 customEffects['ostin'] = { // name should either match directory in setup/animations or an image in assets
-    fps: 10,
+    fps: 2,
     loop: true,
     delay: 0,
     htmlId: 'ostin', // the id in the html where this will be placed (note also accepts an array)
@@ -153,7 +155,7 @@ customEffects['cascade'] = { // name should either match directory in setup/anim
         easing: 'QuadraticOut', // see possible easings (above)
         delay: 0,
         duration: 500,
-        animation: 'fadeIn'
+        animation: 'fadeIn',
     }]
 };
 
@@ -166,8 +168,9 @@ customEffects['logo'] = { // name should either match directory in setup/animati
     animations: [{ // move this item when user wins
         easing: 'QuadraticOut', // see possible easings (above)
         delay: 0,
-        duration: 1000,
-        animation: 'spinIn'
+        duration: 2000,
+        animation: 'moveTo',
+        onComplete: 'swing'
     }]
 };
 
@@ -225,4 +228,5 @@ animations['booster02-destroy'] = {
 //  loop: false
 // };
 
-exports.animations = animations;
+exports.animations = animations;exports.settingsOveride = "";
+

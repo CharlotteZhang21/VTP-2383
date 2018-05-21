@@ -1,6 +1,6 @@
- import Tile from '../prefabs/tile';
- import Lightning from '../prefabs/lightning';
- import * as TileUtil from '../utils/tile-util';
+ // import Tile from '../prefabs/tile';
+ // import Lightning from '../prefabs/lightning';
+ // import * as TileUtil from '../utils/tile-util';
  import * as Util from '../utils/util';
 
 
@@ -38,6 +38,7 @@
          tile1.properties.noEmit = true;
          tile2.properties.noEmit = true;
 
+         console.log(true);
          emitEnergyStripe(
              game,
              tile1.parent.x + tile1.x,
@@ -84,14 +85,15 @@
  // called when a tile has been destroyed
  export function onTileDestroy(tile, tileInfo) {
 
-     if (tile === null || tile.parent === null || tile.properties.noEmit === true) {
+
+     if (tile === undefined || tile.parent === undefined || tile.settings.noEmit === undefined) {
          return;
      }
 
      switch (tileInfo.explode) {
          case 'horizontal':
          case 'vertical':
-
+         console.log("ex")
              emitEnergyStripe(
                  tile.game,
                  tile.parent.x + tile.x,
@@ -150,7 +152,8 @@
  }
 
 
- function emitEnergyStripe(game, x, y, width, scale, vertical, horizontal) {
+ export function emitEnergyStripe(game, x, y, width, scale, vertical, horizontal) {
+
 
      if (vertical === false && horizontal === false) {
          return;
@@ -207,13 +210,15 @@
 
      var tweenTo = {};
 
-     var energyStripe = new Phaser.Sprite(game, 0, 0, 'energy-stripe');
+     var energyStripe = new Phaser.Sprite(game, 0, 0, "sprites", 'energy-stripe.png');
 
      energyStripe.scale.x = scale * 0.5;
      energyStripe.scale.y = scale * 0.5;
 
      energyStripe.x = x;
      energyStripe.y = y;
+
+     energyStripe.anchor.set(.5, .5)
 
      switch (facing) {
          case 'left':

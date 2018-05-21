@@ -229,7 +229,7 @@ body {
   -ms-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-image: url(../assets/bg.jpg); }
+  background-image: url(bg.jpg); }
 
 canvas {
   display: block;

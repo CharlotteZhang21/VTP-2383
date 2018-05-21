@@ -1,6 +1,7 @@
 import * as Blast from '../utils/blast';
 import * as Tweener from '../utils/tweener';
 import * as Util from '../utils/util';
+import * as Fx from '../utils/custom-tile-events';
 import BoardData from '../board/board';
 import Boosters from '../const/boosters';
 import CustomBounce from '../utils/custom-bounce';
@@ -35,7 +36,7 @@ class Board {
 
         this.swipeDuration = 450;
         this.comboDuration = 150;
-        this.staggerDelay = 80;
+        this.staggerDelay = 40;
         this.flySpeed = 200;
 
         this.game.onInteract.add(this.onInteract, this);
@@ -742,6 +743,7 @@ class Board {
                 }
             }
 
+
             if (tile.settings.destroyAnim) {
 
                 this.playAnimation(tile, tile.settings.destroyAnim);
@@ -766,18 +768,6 @@ class Board {
 
 
             } else {
-
-                // if (tile.settings.destroyAnim) {
-
-                //     // this.playAnimation(tile, tile.settings.destroyAnim);
-
-                //     this.playAnimation(tile, 'piece03-destroy');
-
-                //     console.log('hello');
-                // } else {
-
-                //     this.playAnimation(tile, tile.settings.key + '-destroy');
-                // }
 
                 var anim = tile.settings.destroyAnim || tile.settings.color + '-destroy';
 
@@ -827,7 +817,6 @@ class Board {
             }
 
             if (tile.settings.onDestroyGenerate) {
-
                 this.aboveLayerGrp.add(this.createTile(tile.settings.onDestroyGenerate, x, y, Settings.piecePadding, this.tiles));
             }
 
@@ -1028,7 +1017,6 @@ class Board {
         }
 
         blastMatches.forEach(function(bm) {
-
             blastTiles.push(this.getTileAt(bm.x, bm.y, this.tiles));
         }, this);
 
@@ -1051,6 +1039,18 @@ class Board {
 
         var holes = [];
 
+        // var tile1_Pos = {
+        //     x: tiles[0].x,
+        //     y: tiles[0].y
+        // };
+
+        // var tile2_Pos = {
+        //     x: tiles[1].x,
+        //     y: tiles[1].y
+        // }
+
+        // var boosterTiles = [];
+
 
         for (var i = 0; i < tiles.length; i++) {
 
@@ -1069,6 +1069,29 @@ class Board {
             if (tiles[i].settings.key.indexOf('booster') === 0) {
 
                 blastMatches = this.getBlastMatches(tiles[i]);
+
+                // boosterTiles.push(tile[i]);
+
+                tiles.forEach(function(t) {
+                    // console.log(tile1_Pos.y);
+                    if(t.settings.explode ) {
+                    // console.log(this.x + "// "  + this.x * window.devicePixelRatio);
+                        Fx.emitEnergyStripe(this.game,
+                             // tile1_Pos.x + tiles[1].width/2.5,
+                             // tile1_Pos.y + tiles[1].height * 3,
+                             this.x + tiles[0].settings.x * this.tileWidth + this.tileWidth/2,
+                             this.y + tiles[0].settings.y * this.tileWidth + this.tileWidth/2,
+                             tiles[0].width,
+                             tiles[0].scale.x * 3,
+                             t.settings.explode === 'vertical',
+                             t.settings.explode === 'horizontal' 
+                        );
+
+                    }    
+                }, this);
+
+                
+
             }
 
             if ((Settings.interactionType === 'swipe' && (matchComps.h >= 3 || matchComps.v >= 3 || blastMatches.length > 0)) ||
@@ -1094,6 +1117,8 @@ class Board {
 
                     delay = Math.max(delay, boosterMatchResult.delay);
 
+                    
+
                 } else {
                     matches = matches.concat(this.addBlockerMatches(matches));
 
@@ -1113,7 +1138,7 @@ class Board {
         //update the progress bar
 
         var progressPercentage = matches.length / this.totalJellyToGenerate ;
-        
+
         
         this.game.onTweenBar.dispatch(progressPercentage);
 
@@ -1305,6 +1330,9 @@ class Board {
 
                     index = Math.max(Math.abs(m.settings.x - orig.x), Math.abs(m.settings.y - orig.y));
                 }
+
+                if(m.destroys != null) 
+                    surpressAnimation = m.destroys;
 
                 this.explode(m, index, stagger, surpressAnimation);
 

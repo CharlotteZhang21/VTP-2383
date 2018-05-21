@@ -42,7 +42,8 @@
           this.game.onInteract.add(this.onInteract, this);
           this.game.onInteractionComplete.add(this.onInteractionComplete, this);
           this.game.onGameComplete.add(this.onGameComplete, this);
-      }
+
+        }
 
       setupInputListeners() {
 
@@ -128,7 +129,8 @@
 
           this.logo = this.createItem('sprites', 'logo', 'logo');
 
-          // this.logo.alpha = 0;
+          // this.logo.y = -90;
+          this.logo.alpha = 0;
 
           this.customEffects = new CustomEffects(this.game);
       }
@@ -195,8 +197,6 @@
       }
 
       onGameComplete() {
-
-        console.log('finish');
 
           this.game.global.gameComplete = true;
 

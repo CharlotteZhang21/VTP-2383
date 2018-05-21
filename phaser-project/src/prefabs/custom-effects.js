@@ -186,7 +186,7 @@ class CustomEffects {
 
         var tweens = [];
 
-        var alpha, delay, duration, easing, x, y, angle, elId, toScale, endScale, xScale, yScale;
+        var alpha, delay, duration, easing, x, y, angle, elId, toScale, endScale, xScale, yScale, onComplete;
 
         (effect.animations || []).forEach(function(a) {
 
@@ -206,6 +206,14 @@ class CustomEffects {
             elId = a.htmlId || '';
             xScale = a.xScale || 1;
             yScale = a.yScale || 1;
+            
+
+            if(a.onComplete == 'swing') {
+
+                var anchorX = .5;
+                var anchorY = 0;
+                onComplete = Tweener.jiggleAngle(effect.sprite, 30, duration * .6, anchorX, anchorY);
+            }
 
             switch (a.animation) {
                 case 'moveTo':
@@ -214,7 +222,7 @@ class CustomEffects {
                     y = effect.sprite.y + (effect.sprite.height * y);
 
                     Tweener.moveTo(
-                        effect.sprite, x, y, delay, duration, easing);
+                        effect.sprite, x, y, delay, duration, easing, onComplete);
                     break;
                 case 'fade':
                     Tweener.fade(effect.sprite, alpha, delay, duration, easing);
@@ -253,6 +261,8 @@ class CustomEffects {
                     Tweener.scaleThenFade(effect.sprite, delay, duration);
                     break;
             }
+
+
         }, this);
     }
 
