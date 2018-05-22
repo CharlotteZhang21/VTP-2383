@@ -443,8 +443,8 @@ a {
 /*iPhone X landscape*/
 @media (min-aspect-ratio: 724 / 354) and (orientation: landscape) {
   #board {
-    width: 48vw;
-    height: 48vw; }
+    width: 45vw;
+    height: 45vw; }
   #board-mask {
-    width: 48vw;
-    height: 48vw; } }
+    width: 44.5vw;
+    height: 45.5vw; } }

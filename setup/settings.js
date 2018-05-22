@@ -1,6 +1,6 @@
 /********************* GENERAL *********************/
 
-exports.autoPlayAfter = 6000; // milliseconds
+exports.autoPlayAfter = 3000; // milliseconds
 
 // todo implement tap
 exports.interactionType = 'swipe'; // swipe or tap
@@ -21,7 +21,7 @@ exports.fadeBoardOnComplete = false; // when all interactions are complete the g
 
 exports.removeGoalPanelOnComplete = true; // when all interactions are complete the goal panel will move out/stay
 
-exports.timer = false; // hide close button until interaction/autoplay
+exports.timer = true; // hide close button until interaction/autoplay
 
 exports.timerDuration = 0; // time until close button will appear after first interaction
 
